@@ -11,7 +11,7 @@ function App() {
         <section>
           <Gallery />
           <Profile />
-          <TodoList/>
+          <TodoList />
         </section>
       </header>
     </div>
@@ -20,23 +20,34 @@ function App() {
 
 export default App;
 
+
+const baseUrl = 'https://i.imgur.com/';
+const person = {
+  name: 'Gregorio Y. Zara',
+  imageId: '7vQD0fP',
+  imageSize: 's',
+  theme: {
+    backgroundColor: 'black',
+    color: 'pink'
+  }
+};
+//https://i.imgur.com/7vQD0fPs.jpg
 export function TodoList() {
   return (
-    <diV>
-    // This doesn't quite work!
-      <h1>Hedy Lamarr's Todos</h1>
+    <div style={person.theme}>
+      <h1>{person.name}'s Todos</h1>
       <img
-        src="https://i.imgur.com/yXOvdOSs.jpg"
-        alt="Hedy Lamarr"
-        class="photo"
-      ></img>
+        className="avatar"
+        src={baseUrl + '' + person.imageId + '' + person.imageSize + '.jpg'}
+        alt={person.name}
+      />
       <ul>
-        <li>Invent new traffic lights</li>
-        <li>Rehearse a movie scene</li>
-        <li>Improve the spectrum technology</li>
+        <li>Improve the videophone</li>
+        <li>Prepare aeronautics lectures</li>
+        <li>Work on the alcohol-fuelled engine</li>
       </ul>
-    </diV>
+    </div>
   );
-
 }
+
 
