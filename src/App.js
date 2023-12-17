@@ -3,6 +3,8 @@ import './App.css';
 import Gallery from './Components/Gallery.js';
 import Profile from './Components/Profile.js';
 import Clock from './Components/clock.js';
+import { people } from './Components/data.js';
+import { getImageUrl } from './Components/utils.js';
 
 function useTime() {
   const [time, setTime] = useState(() => new Date());
@@ -35,7 +37,8 @@ function App() {
           <option value="rebeccapurple">rebeccapurple</option>
         </select>
       </p>
-      <Clock color={color} time={time.toLocaleDateString() + ' ' +time.toLocaleTimeString()} />
+      <Clock color={color} time={time.toLocaleDateString() + ' ' + time.toLocaleTimeString()} />
+      <List/>
     </div>
   );
 }
@@ -72,4 +75,20 @@ export function TodoList() {
   );
 }
 
+export function List() {
 
+  const listItems = people.map(person =>
+    <li key={person.id}>
+      <img
+        src={getImageUrl(person)}
+        alt={person.name}
+      />
+      <p>
+        <b>{person.name}</b>
+        {' ' + person.profession + ' '}
+        known for {person.accomplishment}
+      </p>
+    </li>
+  );
+  return <ul>{listItems}</ul>;
+}
