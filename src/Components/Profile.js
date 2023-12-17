@@ -40,7 +40,7 @@ export default function Gallery() {
   return (
     <div>
       <h1>Notable Scientists</h1>
-      <Profile
+      <Profile key={crypto.randomUUID}
         imageId={"szV5sdG"}
         name={"Maria Skłodowska-Curie"}
         profession={"physicist and chemist"}
@@ -52,7 +52,7 @@ export default function Gallery() {
         discovery={"polonium (chemical element)"}
         imageSize={70}
       />
-      <Profile
+      <Profile key={crypto.randomUUID}
         imageId={"YfeOqp2"}
         name={"Katsuko Saruhashi"}
         profession={"geochemist"}

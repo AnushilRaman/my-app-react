@@ -3,7 +3,7 @@ import './App.css';
 import Gallery from './Components/Gallery.js';
 import Profile from './Components/Profile.js';
 import Clock from './Components/clock.js';
-import { people } from './Components/data.js';
+import { people, recipes } from './Components/data.js';
 import { getImageUrl } from './Components/utils.js';
 
 function useTime() {
@@ -38,7 +38,8 @@ function App() {
         </select>
       </p>
       <Clock color={color} time={time.toLocaleDateString() + ' ' + time.toLocaleTimeString()} />
-      <List/>
+      <List />
+      <RecipeList />
     </div>
   );
 }
@@ -77,7 +78,7 @@ export function TodoList() {
 
 
 export function List() {
-  const chemistsList = people.filter(x=>x.profession==='chemist').map(person=> 
+  const chemistsList = people.filter(x => x.profession === 'chemist').map(person =>
     <li key={person.id}>
       <img
         src={getImageUrl(person)}
@@ -90,7 +91,7 @@ export function List() {
       </p>
     </li>
   );
-  const everyoneList = people.filter(x=>x.profession!=='chemist').map(person=> 
+  const everyoneList = people.filter(x => x.profession !== 'chemist').map(person =>
     <li key={person.id}>
       <img
         src={getImageUrl(person)}
@@ -110,5 +111,22 @@ export function List() {
       <h1>Chemist</h1>
       <ul>{chemistsList}</ul>
     </article>
+  );
+}
+
+export function RecipeList() {
+  const listItems = recipes.map(r =>
+    <div key={r.id}>
+      <h2>{r.name}</h2>
+      <ul>
+        {r.ingredients.map(ing => <li key={r.id}>{ing}</li>)}
+      </ul>
+    </div>
+  );
+  return (
+    <div>
+      <h1>Recipes</h1>
+      {listItems}
+    </div>
   );
 }
