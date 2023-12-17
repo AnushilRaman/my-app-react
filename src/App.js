@@ -75,20 +75,40 @@ export function TodoList() {
   );
 }
 
-export function List() {
 
-  const listItems = people.map(person =>
+export function List() {
+  const chemistsList = people.filter(x=>x.profession==='chemist').map(person=> 
     <li key={person.id}>
       <img
         src={getImageUrl(person)}
         alt={person.name}
       />
       <p>
-        <b>{person.name}</b>
+        <b>{person.name}:</b>
         {' ' + person.profession + ' '}
         known for {person.accomplishment}
       </p>
     </li>
   );
-  return <ul>{listItems}</ul>;
+  const everyoneList = people.filter(x=>x.profession!=='chemist').map(person=> 
+    <li key={person.id}>
+      <img
+        src={getImageUrl(person)}
+        alt={person.name}
+      />
+      <p>
+        <b>{person.name}:</b>
+        {' ' + person.profession + ' '}
+        known for {person.accomplishment}
+      </p>
+    </li>
+  );
+  return (
+    <article>
+      <h1>Scientists</h1>
+      <ul>{everyoneList}</ul>
+      <h1>Chemist</h1>
+      <ul>{chemistsList}</ul>
+    </article>
+  );
 }
