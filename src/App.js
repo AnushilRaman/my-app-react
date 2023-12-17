@@ -6,14 +6,11 @@ import Profile from './Components/Profile.js';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <section>
+     <section>
           <Gallery />
           <Profile />
-          <TodoList />
+          {/* <TodoList /> */}
         </section>
-      </header>
     </div>
   );
 }

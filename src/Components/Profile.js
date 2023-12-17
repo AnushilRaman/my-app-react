@@ -1,10 +1,20 @@
+import Avatar from "./Avatar";
+function Card({ children }) {
+    return (
+        <div className="card">
+            {children}
+        </div>
+    );
+}
+
 function Profile() {
     return (
-        <>
-        <img src="https://i.imgur.com/QIrZWGIs.jpg" alt="Alan L. Hart" ></img>
-        <img src="https://i.imgur.com/QIrZWGIs.jpg" alt="Alan L. Hart" ></img>
-        </>
+        <Card>
+            <Avatar size={100} person={{
+                name: 'Katsuko Saruhashi',
+                imageId: 'YfeOqp2'
+            }} />
+        </Card>
     );
-
 }
 export default Profile
