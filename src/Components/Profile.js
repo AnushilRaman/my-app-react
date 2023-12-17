@@ -1,20 +1,61 @@
-import Avatar from "./Avatar";
-function Card({ children }) {
+import { getImageUrl } from "./utils.js";
+
+function Profile({
+    imageId,
+    name,
+    profession,
+    awards,
+    discovery,
+    imageSize = 70,
+}) {
     return (
-        <div className="card">
-            {children}
-        </div>
+        <section className="profile">
+            <h2>{name}</h2>
+            <img
+                className="avatar"
+                src={getImageUrl({imageId})}
+                alt={name}
+                width={imageSize}
+                height={imageSize}
+            />
+            <ul>
+                <li>
+                    <b>Profession: </b>
+                    {profession}
+                </li>
+                <li>
+                    <b>Awards: awards.length </b>
+                    {awards}
+                </li>
+                <li>
+                    <b>Discovered: </b>
+                    {discovery}
+                </li>
+            </ul>
+        </section>
     );
 }
 
-function Profile() {
+export default function Gallery() {
     return (
-        <Card>
-            <Avatar size={100} person={{
-                name: 'Katsuko Saruhashi',
-                imageId: 'YfeOqp2'
-            }} />
-        </Card>
+        <div>
+            <h1>Notable Scientists</h1>
+            <Profile
+                imageId={'szV5sdG'}
+                name={"Maria Skłodowska-Curie"}
+                profession={"physicist and chemist"}
+                awards={'Nobel Prize in Physics, Nobel Prize in Chemistry, Davy Medal,Matteucci Medal'}
+                discovery={"polonium (chemical element)"}
+                imageSize={70}
+            />
+            <Profile
+                imageId={"YfeOqp2"}
+                name={"Katsuko Saruhashi"}
+                profession={"geochemist"}
+                awards={"Miyake Prize for geochemistry, Tanaka Prize"}
+                discovery={"a method for measuring carbon dioxide in seawater"}
+                imageSize={70}
+            />
+        </div>
     );
 }
-export default Profile
