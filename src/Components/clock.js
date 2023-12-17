@@ -1,5 +1,5 @@
 
-export default function clock({ color, time }) {
+export default function Clock({ color, time }) {
     return (
 
         <h1 style={{ color: color }}>
