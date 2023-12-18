@@ -5,6 +5,7 @@ import Profile from './Components/Profile.js';
 import Clock from './Components/clock.js';
 import { people, recipes } from './Components/data.js';
 import { getImageUrl } from './Components/utils.js';
+import RecipeList from './Components/Recipes.js';
 
 function useTime() {
   const [time, setTime] = useState(() => new Date());
@@ -28,6 +29,10 @@ function App() {
         <Gallery />
         <Profile />
         {/* <TodoList /> */}
+        <Toolbar
+      onPlayMovie={() => alert('Playing!')}
+      onUploadImage={() => alert('Uploading!')}
+    />
       </section>
       <p>
         Pick a color.
@@ -113,20 +118,22 @@ export function List() {
     </article>
   );
 }
-
-export function RecipeList() {
-  const listItems = recipes.map(r =>
-    <div key={r.id}>
-      <h2>{r.name}</h2>
-      <ul>
-        {r.ingredients.map(ing => <li key={r.id}>{ing}</li>)}
-      </ul>
-    </div>
-  );
+function Toolbar({ onPlayMovie, onUploadImage }) {
   return (
     <div>
-      <h1>Recipes</h1>
-      {listItems}
+      <Button onClick={onPlayMovie}>
+        Play Movie
+      </Button>
+      <Button onClick={onUploadImage}>
+        Upload Image
+      </Button>
     </div>
+  );
+}
+function Button({ onClick, children }) {
+  return (
+    <button onClick={onClick}>
+      {children}
+    </button>
   );
 }
