@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { sculptureList } from './Components/data.js';
 import { Form } from './Components/Form.js';
+import Counter from './Components/Counter.js';
 
 
 export default function Gallery() {
@@ -43,6 +44,7 @@ export default function Gallery() {
         alt={sculpture.alt}
       />
       <Form />
+      <Counter/>
     </>
   );
 }
