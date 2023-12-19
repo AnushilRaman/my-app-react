@@ -9,7 +9,7 @@ const initialList = [
 export function BucketList() {
 
     const [list, setList] = useState(
-        initialList
+        initialList //// pass the orignal array in hook for new array
     );
 
     function handleToggle(artworkId, nextSeen) {
