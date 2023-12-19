@@ -1,139 +1,44 @@
-import { useEffect, useState } from 'react';
-import './App.css';
-import Gallery from './Components/Gallery.js';
-import Profile from './Components/Profile.js';
-import Clock from './Components/clock.js';
-import { people, recipes } from './Components/data.js';
-import { getImageUrl } from './Components/utils.js';
-import RecipeList from './Components/Recipes.js';
+import { useState } from 'react';
+import { sculptureList } from './Components/data.js';
 
-function useTime() {
-  const [time, setTime] = useState(() => new Date());
-  useEffect(() => {
-    const id = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-    return () => clearInterval(id);
-  }, []);
-  return time
-}
+export default function Gallery() {
+  const [index, setIndex] = useState(0);
+  const [showMore, setShowMore] = useState(false);
+  const hasNext = index < sculptureList.length - 1;
 
-
-function App() {
-  const time = useTime();
-  const [color, setColor] = useState('lightcoral');
-
-  return (
-    <div className="App">
-      <section>
-        <Gallery />
-        <Profile />
-        {/* <TodoList /> */}
-        <Toolbar
-      onPlayMovie={() => alert('Playing!')}
-      onUploadImage={() => alert('Uploading!')}
-    />
-      </section>
-      <p>
-        Pick a color.
-        <select value={color} onChange={e => setColor(e.target.value)}>
-          <option value="lightcoral">lightcoral</option>
-          <option value="midnightblue">midnightblue</option>
-          <option value="rebeccapurple">rebeccapurple</option>
-        </select>
-      </p>
-      <Clock color={color} time={time.toLocaleDateString() + ' ' + time.toLocaleTimeString()} />
-      <List />
-      <RecipeList />
-    </div>
-  );
-}
-
-export default App;
-
-
-const baseUrl = 'https://i.imgur.com/';
-const person = {
-  name: 'Gregorio Y. Zara',
-  imageId: '7vQD0fP',
-  imageSize: 's',
-  theme: {
-    backgroundColor: 'black',
-    color: 'pink'
+  function handleNextClick() {
+    if (hasNext) {
+      setIndex(index + 1);
+    } else {
+      setIndex(0);
+    }
   }
-};
-//https://i.imgur.com/7vQD0fPs.jpg
-export function TodoList() {
-  return (
-    <div style={person.theme}>
-      <h1>{person.name}'s Todos</h1>
-      <img
-        className="avatar"
-        src={baseUrl + '' + person.imageId + '' + person.imageSize + '.jpg'}
-        alt={person.name}
-      />
-      <ul>
-        <li>Improve the videophone</li>
-        <li>Prepare aeronautics lectures</li>
-        <li>Work on the alcohol-fuelled engine</li>
-      </ul>
-    </div>
-  );
-}
 
+  function handleMoreClick() {
+    setShowMore(!showMore);
+  }
 
-export function List() {
-  const chemistsList = people.filter(x => x.profession === 'chemist').map(person =>
-    <li key={person.id}>
+  let sculpture = sculptureList[index];
+  return (
+    <>
+      <button onClick={handleNextClick}>
+        Next
+      </button>
+      <h2>
+        <i>{sculpture.name} </i>
+        by {sculpture.artist}
+      </h2>
+      <h3>
+        ({index + 1} of {sculptureList.length})
+      </h3>
+      <button onClick={handleMoreClick}>
+        {showMore ? 'Hide' : 'Show'} details
+      </button>
+      {showMore && <p>{sculpture.description}</p>}
       <img
-        src={getImageUrl(person)}
-        alt={person.name}
+        src={sculpture.url}
+        alt={sculpture.alt}
       />
-      <p>
-        <b>{person.name}:</b>
-        {' ' + person.profession + ' '}
-        known for {person.accomplishment}
-      </p>
-    </li>
-  );
-  const everyoneList = people.filter(x => x.profession !== 'chemist').map(person =>
-    <li key={person.id}>
-      <img
-        src={getImageUrl(person)}
-        alt={person.name}
-      />
-      <p>
-        <b>{person.name}:</b>
-        {' ' + person.profession + ' '}
-        known for {person.accomplishment}
-      </p>
-    </li>
-  );
-  return (
-    <article>
-      <h1>Scientists</h1>
-      <ul>{everyoneList}</ul>
-      <h1>Chemist</h1>
-      <ul>{chemistsList}</ul>
-    </article>
-  );
-}
-function Toolbar({ onPlayMovie, onUploadImage }) {
-  return (
-    <div>
-      <Button onClick={onPlayMovie}>
-        Play Movie
-      </Button>
-      <Button onClick={onUploadImage}>
-        Upload Image
-      </Button>
-    </div>
-  );
-}
-function Button({ onClick, children }) {
-  return (
-    <button onClick={onClick}>
-      {children}
-    </button>
+    </>
   );
 }
