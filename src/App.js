@@ -1,6 +1,7 @@
 import { Form } from './Components/Form.js';
 import Counter from './Components/Counter.js';
 import Gallery from './Components/Gallery.js';
+import { BucketList } from './Components/BucketList.js';
 
 
 export default function App() {
@@ -10,6 +11,7 @@ export default function App() {
       <Gallery />
       <Counter/>
       <Form/>
+      <BucketList/>
     </>
   );
 }
