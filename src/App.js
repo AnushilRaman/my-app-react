@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { sculptureList } from './Components/data.js';
+import { Form } from './Components/Form.js';
+
 
 export default function Gallery() {
   const [index, setIndex] = useState(0);
+  const [count, setCount] = useState(0);
   const [showMore, setShowMore] = useState(false);
   const hasNext = index < sculptureList.length - 1;
 
@@ -39,6 +42,7 @@ export default function Gallery() {
         src={sculpture.url}
         alt={sculpture.alt}
       />
+      <Form />
     </>
   );
 }
