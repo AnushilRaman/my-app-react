@@ -10,10 +10,12 @@ export default function App() {
   return (
     <>
       <LightSwitch />
-      <br /><br /><br />
+      <br /><br />
+      <Form />
+      <br />
+      <br />
       <Gallery />
       <Counter />
-      <Form />
       <BucketList />
     </>
   );
