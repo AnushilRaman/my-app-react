@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { sculptureList } from './data';
+import Image from './Image';
 
 export default function Gallery() {
   const [index, setIndex] = useState(0);
@@ -20,7 +21,8 @@ export default function Gallery() {
   let sculpture = sculptureList[index];
   return (
     <>
-      <button onClick={handleNextClick}>
+
+      {/* <button onClick={handleNextClick}>
         Next
       </button>
       <h2>
@@ -37,7 +39,16 @@ export default function Gallery() {
       <img
         src={sculpture.url}
         alt={sculpture.alt}
-      />
+      /> */}
+
+      <section>
+        <h1>Inspiring sculpture</h1>
+        <Image />
+        <Image />
+        <Image />
+
+      </section>
+
     </>
   );
 }
