@@ -4,12 +4,16 @@ import Gallery from './Components/Gallery.js';
 import { BucketList } from './Components/BucketList.js';
 import { LightSwitch } from './Components/eventHandler.js';
 import TrafficLight from './Components/TrafficLight.js';
+import { RequestTracker } from './Components/UpdaterFunction.js';
 
 
 export default function App() {
 
   return (
     <>
+      <RequestTracker />
+      <br />
+      <br />
       <LightSwitch />
       <br />
       <br />
