@@ -43,6 +43,9 @@ export default function ShoppingCart() {
                     >
                         +
                     </button>
+                    <button onClick={() => {
+                        setProducts(products.filter(a => a.id !== product.id))
+                    }}>-</button>
                 </li>
             ))}
         </ul>
