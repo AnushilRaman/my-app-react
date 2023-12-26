@@ -5,12 +5,14 @@ import { BucketList } from './Components/BucketList.js';
 import { LightSwitch } from './Components/eventHandler.js';
 import TrafficLight from './Components/TrafficLight.js';
 import { RequestTracker } from './Components/UpdaterFunction.js';
+import ShoppingCart from './Components/ShoppingCart.js';
 
 
 export default function App() {
 
   return (
     <>
+      <ShoppingCart />
       <RequestTracker />
       <br />
       <br />
